@@ -1,0 +1,73 @@
+{
+	"name": "GOGA_MSTR_PORTFOLIO_STG",
+	"properties": {
+		"activities": [
+			{
+				"name": "PORTFOLIOS",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "GOGA_GEN_STG_Trun_Load",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"pp_pipeline_exec_code": "131",
+						"pp_MasterPipelineName": {
+							"value": "@{pipeline().Pipeline}",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "TOTAL_MARKET_VALUE_GA",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "GOGA_GEN_STG_Trun_Load",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"pp_pipeline_exec_code": "132",
+						"pp_MasterPipelineName": {
+							"value": "@{pipeline().Pipeline}",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "MANAGEMENT_SEGMENTATION",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "GOGA_GEN_STG_Trun_Load",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"pp_pipeline_exec_code": "134",
+						"pp_MasterPipelineName": {
+							"value": "@{pipeline().Pipeline}",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "GO-GA/PORTFOLIO"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-04-29T08:49:13Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

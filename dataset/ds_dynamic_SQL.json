@@ -1,0 +1,31 @@
+{
+	"name": "ds_dynamic_SQL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQLMI_GOGA",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_TargetSchema": {
+				"type": "string"
+			},
+			"p_TargetTab": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlMITable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().p_TargetSchema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().p_TargetTab",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

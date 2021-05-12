@@ -1,0 +1,42 @@
+{
+	"name": "ds_blob_dynamic",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "GWAMDataFactoryQA",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_ds_filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().p_ds_filename",
+					"type": "Expression"
+				},
+				"folderPath": "input/MetadataBackup",
+				"container": "gwamdatafactoryqa"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "John",
+				"type": "String"
+			},
+			{
+				"name": " Doe",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,7 @@
+{
+	"name": "QA-ADF-IDDL-IntegrationRuntime-2",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "QA-ADF-IDDL-IntegrationRuntime 2 to check for failure if any with VM"
+	}
+}

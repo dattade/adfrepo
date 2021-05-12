@@ -1,0 +1,33 @@
+{
+	"name": "GOGA_MSTR_PRICINGINDEX_STG",
+	"properties": {
+		"activities": [
+			{
+				"name": "cube_index_constituent",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "GOGA_GEN_STG_Incr_Load",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"pp_pipeline_exec_code": "140",
+						"pp_MasterPipelineName": {
+							"value": "@{pipeline().Pipeline}",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "GO-GA/PRICING INDEX"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-05-03T17:07:11Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,21 @@
+{
+	"name": "LS_ODBC_IDDL_DEV",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "Odbc",
+		"typeProperties": {
+			"connectionString": {
+				"type": "SecureString",
+				"value": "**********"
+			},
+			"authenticationType": "Basic",
+			"userName": "venkaar",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4NTVmY2I4MS1lYTAxLTQxNDktYjkyNS03NWQ0YTM0ODBhZTQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "QA-ADF-IDDL-IntegrationRuntime-2",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

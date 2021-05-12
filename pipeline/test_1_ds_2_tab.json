@@ -1,0 +1,65 @@
+{
+	"name": "test_1_ds_2_tab",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlMISource",
+						"sqlReaderQuery": "SELECT\t0 as employeeid,\n\t\tt1.empname as employeename,\n\t\tt2.age as employeeage\nFROM STG.test1 T1 JOIN STG.test2  T2 ON t1.empid = t2.empid",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlMISink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_dynamic_SQL",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_TargetSchema": "STG",
+							"p_TargetTab": "NA"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_dynamic_SQL",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_TargetSchema": "STG",
+							"p_TargetTab": "Test3"
+						}
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Test"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-05-05T11:19:25Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

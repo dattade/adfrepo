@@ -1,0 +1,19 @@
+{
+	"name": "OutputDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "GWAMDataFactoryQA",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "Output",
+				"container": "gwamdatafactoryqa"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

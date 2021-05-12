@@ -1,0 +1,72 @@
+{
+	"name": "test_security",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OdbcSource",
+						"query": " SELECT *  FROM inv_dal_eod_qa.cube_securities  WHERE 1=1 LIMIT 10000",
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"parallelCopies": 16,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_dynamic_DAL",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_Source": "inv_dal_eod_qa.CUBE_PORTFOLIOS"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_blob_dynamic",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_ds_filename": "cube_securities.txt"
+						}
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Test"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-05-03T17:05:29Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

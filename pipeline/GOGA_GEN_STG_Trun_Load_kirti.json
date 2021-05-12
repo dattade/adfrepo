@@ -1,0 +1,344 @@
+{
+	"name": "GOGA_GEN_STG_Trun_Load_kirti",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy Data - IDDL to SQL",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Lookup Metadata Master",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OdbcSource",
+						"additionalColumns": [
+							{
+								"name": "IsLoaded",
+								"value": "N"
+							},
+							{
+								"name": "CreatedDate",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							}
+						],
+						"query": {
+							"value": "@{activity('Lookup Metadata Master').output.firstRow.source_query}",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "SqlMISink",
+						"preCopyScript": {
+							"value": "TRUNCATE TABLE @{activity('Lookup Metadata Master').output.firstRow.target_schema}.@{activity('Lookup Metadata Master').output.firstRow.target_tab}",
+							"type": "Expression"
+						},
+						"maxConcurrentConnections": 16
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_dynamic_DAL",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_Source": {
+								"value": "@{activity('Lookup Metadata Master').output.firstrow.source_schema}.@{activity('Lookup Metadata Master').output.firstRow.source_tab}",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_dynamic_SQL",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_TargetSchema": {
+								"value": "@{activity('Lookup Metadata Master').output.firstRow.target_schema}",
+								"type": "Expression"
+							},
+							"p_TargetTab": {
+								"value": "@{activity('Lookup Metadata Master').output.firstRow.target_tab}",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "SP - PipelineLog update on success",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Copy Data - IDDL to SQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": {
+						"value": "@{activity('Lookup Metadata Master').output.firstRow.target_schema}.usp_pipelinelog",
+						"type": "Expression"
+					},
+					"storedProcedureParameters": {
+						"adfName": {
+							"value": {
+								"value": "@pipeline().DataFactory",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"pipelinename": {
+							"value": {
+								"value": "@pipeline().Pipeline",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"runid": {
+							"value": {
+								"value": "@pipeline().RunId",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"Status": {
+							"value": "Completed",
+							"type": "String"
+						},
+						"triggername": {
+							"value": {
+								"value": "@pipeline().TriggerName",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"triggerTime": {
+							"value": {
+								"value": "@pipeline().TriggerTime",
+								"type": "Expression"
+							},
+							"type": "DateTime"
+						},
+						"master_pipelinename": {
+							"value": {
+								"value": "@pipeline().parameters.pp_MasterPipelineName",
+								"type": "Expression"
+							},
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_SQLMI_GOGA",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "SP - Pipelinelog update on failure",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Copy Data - IDDL to SQL",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": {
+						"value": "@{activity('Lookup Metadata Master').output.firstRow.target_schema}.usp_pipelinelog",
+						"type": "Expression"
+					},
+					"storedProcedureParameters": {
+						"adfName": {
+							"value": {
+								"value": "@pipeline().DataFactory",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"pipelinename": {
+							"value": {
+								"value": "@pipeline().Pipeline",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"runid": {
+							"value": {
+								"value": "@pipeline().RunId",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"Status": {
+							"value": "Failed",
+							"type": "String"
+						},
+						"triggername": {
+							"value": {
+								"value": "@pipeline().TriggerName",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"triggerTime": {
+							"value": {
+								"value": "@pipeline().TriggerTime",
+								"type": "Expression"
+							},
+							"type": "DateTime"
+						},
+						"master_pipelinename": {
+							"value": {
+								"value": "@pipeline().parameters.pp_MasterPipelineName",
+								"type": "Expression"
+							},
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_SQLMI_GOGA",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "ActivityLog update on completion",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Copy Data - IDDL to SQL",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlMISource",
+						"sqlReaderQuery": {
+							"value": "INSERT INTO @{activity('Lookup Metadata Master').output.firstRow.target_schema}.log_activity SELECT '@{pipeline().DataFactory}' as DataFactory_Name,'@{pipeline().Pipeline}' as Pipeline_Name,'@{pipeline().parameters.pp_MasterPipelineName}' AS Master_Pipeline_Name,'@{pipeline().RunId}' as RunId,'@{activity('Lookup Metadata Master').output.firstRow.source_schema}.@{activity('Lookup Metadata Master').output.firstRow.source_tab}' as source,'@{activity('Lookup Metadata Master').output.firstRow.target_schema}.@{activity('Lookup Metadata Master').output.firstRow.target_tab}' as destination,'@{pipeline().TriggerType}' as TriggerType,'@{pipeline().TriggerId}' as TriggerId,'@{pipeline().TriggerName}' as TriggerName,'@{pipeline().TriggerTime}' as TriggerTime,'@{activity('Copy Data - IDDL to SQL').output.rowsCopied}' as rowsCopied,'@{activity('Copy Data - IDDL to SQL').output.rowsRead}' as RowsRead,'@{activity('Copy Data - IDDL to SQL').output.usedParallelCopies}' as No_ParallelCopies,'@{activity('Copy Data - IDDL to SQL').output.copyDuration}' as copyDuration_in_secs,'@{activity('Copy Data - IDDL to SQL').output.effectiveIntegrationRuntime}' as effectiveIntegrationRuntime,'@{activity('Copy Data - IDDL to SQL').output.executionDetails[0].source.type}' as Source_Type,'@{activity('Copy Data - IDDL to SQL').output.executionDetails[0].sink.type}' as Sink_Type,'@{activity('Copy Data - IDDL to SQL').output.executionDetails[0].status}' as Execution_Status,'@{activity('Copy Data - IDDL to SQL').output.executionDetails[0].start}' as CopyActivity_Start_Time,'@{utcnow()}' as CopyActivity_End_Time,'@{activity('Copy Data - IDDL to SQL').output.executionDetails[0].detailedDurations.queuingDuration}' as CopyActivity_queuingDuration_in_secs,'@{activity('Copy Data - IDDL to SQL').output.executionDetails[0].detailedDurations.timeToFirstByte}' as CopyActivity_timeToFirstByte_in_secs,'@{activity('Copy Data - IDDL to SQL').output.executionDetails[0].detailedDurations.transferDuration}' as CopyActivity_transferDuration_in_secs; SELECT 1;",
+							"type": "Expression"
+						},
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_dynamic_SQL",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_TargetSchema": {
+								"value": "@{activity('Lookup Metadata Master').output.firstRow.target_schema}",
+								"type": "Expression"
+							},
+							"p_TargetTab": "log_activity"
+						}
+					}
+				}
+			},
+			{
+				"name": "Lookup Metadata Master",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlMISource",
+						"sqlReaderQuery": {
+							"value": "SELECT metadata_master_sk,source_schema,source_tab,target_schema,target_tab,delta_identifier,source_query FROM @{pipeline().globalParameters.P_Global_TgtSchema}.tbl_metadata_master WHERE pipeline_exec_code = @{pipeline().parameters.pp_pipeline_exec_code}",
+							"type": "Expression"
+						},
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_dynamic_SQL",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_TargetSchema": {
+								"value": "@pipeline().globalParameters.P_Global_TgtSchema",
+								"type": "Expression"
+							},
+							"p_TargetTab": {
+								"value": "tbl_metadata_master",
+								"type": "Expression"
+							}
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"pp_pipeline_exec_code": {
+				"type": "int"
+			},
+			"pp_MasterPipelineName": {
+				"type": "string",
+				"defaultValue": "NA"
+			}
+		},
+		"folder": {
+			"name": "KS"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-04-27T17:07:12Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

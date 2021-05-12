@@ -1,0 +1,348 @@
+{
+	"name": "GOGA_WRAPPER_MANUBANK",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute if the last run status is Completed",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Last pipeline run status check",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@{equals(activity('Last pipeline run status check').output.firstRow.status,'Completed')}",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "Do nothing",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "MANUBANK_STG",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "GOGA_MSTR_MANUBANK_STG",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						},
+						{
+							"name": "MANUBANK_SMT",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "MANUBANK_STG",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "GOGA_MSTR_MANUBANK_SMT",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"p_m_JobGroup": "MANUBANK",
+									"pp_MasterPipelineName": {
+										"value": "@{pipeline().Pipeline}",
+										"type": "Expression"
+									}
+								}
+							}
+						},
+						{
+							"name": "PipelineLogSuccess",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "MANUBANK_SMT",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": {
+									"value": "@{pipeline().globalParameters.P_Global_TgtSchema}.usp_pipelinelog",
+									"type": "Expression"
+								},
+								"storedProcedureParameters": {
+									"adfName": {
+										"value": {
+											"value": "@pipeline().DataFactory",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"pipelinename": {
+										"value": {
+											"value": "@pipeline().Pipeline",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"runid": {
+										"value": {
+											"value": "@pipeline().RunId",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"Status": {
+										"value": "Completed",
+										"type": "String"
+									},
+									"triggername": {
+										"value": {
+											"value": "@pipeline().TriggerName",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"triggerTime": {
+										"value": {
+											"value": "@pipeline().TriggerTime",
+											"type": "Expression"
+										},
+										"type": "DateTime"
+									},
+									"master_pipelinename": {
+										"value": {
+											"value": "NA",
+											"type": "Expression"
+										},
+										"type": "String"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "LS_SQLMI_GOGA",
+								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "PipelinelogFailure - SMT",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "MANUBANK_SMT",
+									"dependencyConditions": [
+										"Failed"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": {
+									"value": "@{pipeline().globalParameters.P_Global_TgtSchema}.usp_pipelinelog",
+									"type": "Expression"
+								},
+								"storedProcedureParameters": {
+									"adfName": {
+										"value": {
+											"value": "@pipeline().DataFactory",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"pipelinename": {
+										"value": {
+											"value": "@pipeline().Pipeline",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"runid": {
+										"value": {
+											"value": "@pipeline().RunId",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"Status": {
+										"value": "Failed",
+										"type": "String"
+									},
+									"triggername": {
+										"value": {
+											"value": "@pipeline().TriggerName",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"triggerTime": {
+										"value": {
+											"value": "@pipeline().TriggerTime",
+											"type": "Expression"
+										},
+										"type": "DateTime"
+									},
+									"master_pipelinename": {
+										"value": "NA",
+										"type": "String"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "LS_SQLMI_GOGA",
+								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "PipelinelogFailure - STG",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "MANUBANK_STG",
+									"dependencyConditions": [
+										"Failed"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": {
+									"value": "@{pipeline().globalParameters.P_Global_TgtSchema}.usp_pipelinelog",
+									"type": "Expression"
+								},
+								"storedProcedureParameters": {
+									"adfName": {
+										"value": {
+											"value": "@pipeline().DataFactory",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"pipelinename": {
+										"value": {
+											"value": "@pipeline().Pipeline",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"runid": {
+										"value": {
+											"value": "@pipeline().RunId",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"Status": {
+										"value": "Failed",
+										"type": "String"
+									},
+									"triggername": {
+										"value": {
+											"value": "@pipeline().TriggerName",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"triggerTime": {
+										"value": {
+											"value": "@pipeline().TriggerTime",
+											"type": "Expression"
+										},
+										"type": "DateTime"
+									},
+									"master_pipelinename": {
+										"value": "NA",
+										"type": "String"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "LS_SQLMI_GOGA",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "Last pipeline run status check",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlMISource",
+						"sqlReaderQuery": {
+							"value": "SELECT top 1 * FROM (\nSELECT\tMAX(log_pipeline_sk) AS log_pipeline_sk, \n\t\tStatus\nFROM @{pipeline().globalParameters.P_Global_TgtSchema}.log_pipeline \nWHERE pipelinename = '@{pipeline().Pipeline}'\nGROUP BY Status\nUNION ALL\nSELECT TOP 1 \n\t\t0 AS log_pipeline_sk,\n\t   'Completed' AS Status\nFROM @{pipeline().globalParameters.P_Global_TgtSchema}.log_pipeline \n) TAB ORDER BY 1 DESC",
+							"type": "Expression"
+						},
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_dynamic_SQL",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_TargetSchema": {
+								"value": "@pipeline().globalParameters.P_Global_TgtSchema",
+								"type": "Expression"
+							},
+							"p_TargetTab": "log_pipeline"
+						}
+					}
+				}
+			}
+		],
+		"concurrency": 1,
+		"folder": {
+			"name": "GO-GA/MANUBANK"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-04-28T05:57:26Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

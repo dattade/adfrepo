@@ -1,0 +1,93 @@
+{
+	"name": "GOGA_MSTR_INFORGL_STG",
+	"properties": {
+		"activities": [
+			{
+				"name": "CUBE_INFOR_GL_BALANCE",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "GOGA_GEN_STG_Incr_Load",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"pp_pipeline_exec_code": "123",
+						"pp_MasterPipelineName": {
+							"value": "@{pipeline().Pipeline}",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "CUBE_LAWSON_SYSTEM_SOURCE",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "GOGA_GEN_STG_Incr_Load",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"pp_pipeline_exec_code": "122",
+						"pp_MasterPipelineName": {
+							"value": "@{pipeline().Pipeline}",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "CUBE_CHART_OF_ACCOUNTS",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "GOGA_GEN_STG_Incr_Load",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"pp_pipeline_exec_code": "121",
+						"pp_MasterPipelineName": {
+							"value": "@{pipeline().Pipeline}",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "CUBE_ACCOUNTING_UNIT",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "GOGA_GEN_STG_Incr_Load",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"pp_pipeline_exec_code": "120",
+						"pp_MasterPipelineName": {
+							"value": "@{pipeline().Pipeline}",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "GO-GA/INFORGL"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-05-10T05:13:55Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

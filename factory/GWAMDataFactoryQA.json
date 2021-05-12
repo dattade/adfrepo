@@ -1,0 +1,21 @@
+{
+	"name": "GWAMDataFactoryQA",
+	"properties": {
+		"globalParameters": {
+			"P_Global_SrcSchema": {
+				"type": "string",
+				"value": "inv_dal_eod_qa"
+			},
+			"P_Global_TgtSchema": {
+				"type": "string",
+				"value": "STG"
+			}
+		}
+	},
+	"location": "canadacentral",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "c691cf75-0f09-4c06-8f68-ffa4a6bd06d9",
+		"tenantId": "5d3e2773-e07f-4432-a630-1a0f68a28a05"
+	}
+}

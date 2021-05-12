@@ -1,0 +1,153 @@
+{
+	"name": "GOGA_MSTR_COMMLOAN_STG",
+	"properties": {
+		"activities": [
+			{
+				"name": "LOAN_ARRANGEMENT",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "GOGA_STATIC_COMMLOAN_LOAN_ARRANGEMENT_DIM_STG_Load",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"pp_pipeline_exec_code": "275",
+						"pp_MasterPipelineName": {
+							"value": "@{pipeline().Pipeline}",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "LOAN_INV_ARRANGEMENT",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "GOGA_STATIC_COMMLOAN_LOAN_INV_ARRANGEMENT_DIM_STG_Load",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"pp_pipeline_exec_code": "276",
+						"pp_MasterPipelineName": {
+							"value": "@{pipeline().Pipeline}",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "CUBE_LOAN_INV_BALANCE",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "GOGA_GEN_STG_Incr_Load",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"pp_pipeline_exec_code": "277",
+						"pp_MasterPipelineName": {
+							"value": "@{pipeline().Pipeline}",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "CUBE_LOAN_INV_POSITION",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "GOGA_GEN_STG_Incr_Load",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"pp_pipeline_exec_code": "278",
+						"pp_MasterPipelineName": {
+							"value": "@{pipeline().Pipeline}",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "CUBE_LOAN_INV_YIELD",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "GOGA_GEN_STG_Incr_Load",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"pp_pipeline_exec_code": "279",
+						"pp_MasterPipelineName": {
+							"value": "@{pipeline().Pipeline}",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "CUBE_LOAN_POSITION",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "GOGA_GEN_STG_Incr_Load",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"pp_pipeline_exec_code": "280",
+						"pp_MasterPipelineName": {
+							"value": "@{pipeline().Pipeline}",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "CUBE_LOAN_INV_GL_TRANSACTION",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "GOGA_GEN_STG_Incr_Load",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"pp_pipeline_exec_code": "164",
+						"pp_MasterPipelineName": {
+							"value": "@{pipeline().Pipeline}",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "GO-GA/COMMERCIAL LOAN"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-05-09T16:36:05Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

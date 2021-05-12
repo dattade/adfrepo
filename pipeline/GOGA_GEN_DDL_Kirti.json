@@ -1,0 +1,188 @@
+{
+	"name": "GOGA_GEN_DDL_Kirti",
+	"properties": {
+		"activities": [
+			{
+				"name": "Create tab with 1 row data - IDDL to SQL",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Lookup Metadata Master",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OdbcSource",
+						"additionalColumns": [
+							{
+								"name": "IsLoaded",
+								"value": "N"
+							},
+							{
+								"name": "CreatedDate",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							}
+						],
+						"query": {
+							"value": "SELECT * FROM @{activity('Lookup Metadata Master').output.firstRow.source_schema}.@{activity('Lookup Metadata Master').output.firstRow.source_tab} LIMIT 1;",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "SqlMISink",
+						"tableOption": "autoCreate"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_dynamic_DAL",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_Source": {
+								"value": "@{activity('Lookup Metadata Master').output.firstrow.source_schema}.@{activity('Lookup Metadata Master').output.firstRow.source_tab}",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_dynamic_SQL",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_TargetSchema": {
+								"value": "@{activity('Lookup Metadata Master').output.firstRow.target_schema}",
+								"type": "Expression"
+							},
+							"p_TargetTab": {
+								"value": "@{activity('Lookup Metadata Master').output.firstRow.target_tab}",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "Lookup Metadata Master",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlMISource",
+						"sqlReaderQuery": {
+							"value": "SELECT metadata_master_sk,source_schema,source_tab,target_schema,target_tab,delta_identifier,source_query FROM @{pipeline().globalParameters.P_Global_TgtSchema}.tbl_metadata_master WHERE metadata_master_sk = @{pipeline().parameters.pp_metadata_master_sk}",
+							"type": "Expression"
+						},
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_dynamic_SQL",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_TargetSchema": {
+								"value": "@pipeline().globalParameters.P_Global_TgtSchema",
+								"type": "Expression"
+							},
+							"p_TargetTab": {
+								"value": "tbl_metadata_master",
+								"type": "Expression"
+							}
+						}
+					}
+				}
+			},
+			{
+				"name": "Truncate Tab",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Create tab with 1 row data - IDDL to SQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlMISource",
+						"sqlReaderQuery": {
+							"value": "TRUNCATE TABLE @{activity('Lookup Metadata Master').output.firstRow.target_schema}.@{activity('Lookup Metadata Master').output.firstRow.target_tab};SELECT 1;",
+							"type": "Expression"
+						},
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_dynamic_SQL",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_TargetSchema": {
+								"value": "@{activity('Lookup Metadata Master').output.firstRow.target_schema}",
+								"type": "Expression"
+							},
+							"p_TargetTab": {
+								"value": "@{activity('Lookup Metadata Master').output.firstRow.target_tab}",
+								"type": "Expression"
+							}
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"pp_metadata_master_sk": {
+				"type": "int",
+				"defaultValue": 1
+			},
+			"pp_MasterPipelineName": {
+				"type": "string",
+				"defaultValue": "NA"
+			}
+		},
+		"folder": {
+			"name": "KS"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-04-27T16:59:56Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

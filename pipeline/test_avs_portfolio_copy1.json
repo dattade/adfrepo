@@ -1,0 +1,6177 @@
+{
+	"name": "test_avs_portfolio_copy1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OdbcSource",
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "cube_portfolios.effective_date",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.effective_date",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.owner_type",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.owner_type",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portf_group_uid",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portf_group_uid",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portf_group_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portf_group_id",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_short_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_short_name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.appway_key",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.appway_key",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.accounting_price_hierarchy",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.accounting_price_hierarchy",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.accounting_fxrate_source",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.accounting_fxrate_source",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.country_of_domicile_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.country_of_domicile_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.platform_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.platform_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_objective",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_objective",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.client_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.client_id",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.lead_portf_grp_manager_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.lead_portf_grp_manager_name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.mam_entity",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.mam_entity",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.final_reporting_date",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.final_reporting_date",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.scd_multi_class_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.scd_multi_class_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portf_grp_business_objective",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portf_grp_business_objective",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.lawson_legal_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.lawson_legal_name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.lawson_legal_abb_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.lawson_legal_abb_name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.lawson_legal_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.lawson_legal_id",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.status_type_version",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.status_type_version",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_status_type_date",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_status_type_date",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.status_type_creation_date",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.status_type_creation_date",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.status_type_inception_date",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.status_type_inception_date",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.status_type_termination_date",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.status_type_termination_date",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.status_type_status",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.status_type_status",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.fiscal_yearend",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.fiscal_yearend",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.primary_language",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.primary_language",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.tax_status",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.tax_status",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.grp_strategy_long_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.grp_strategy_long_name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_performance_inception_date",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_performance_inception_date",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portf_grp_perf_end_date",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.portf_grp_perf_end_date",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.tax_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.tax_id",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.grp_strategy_geographic_focus",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.grp_strategy_geographic_focus",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.grp_strategy_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.grp_strategy_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.scd_multi_class_indicator",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.scd_multi_class_indicator",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portf_grp_subtype",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portf_grp_subtype",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.division",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.division",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.business_unit",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.business_unit",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.client_reporting_required",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.client_reporting_required",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.client_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.client_name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.base_currency_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.base_currency_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.base_currency_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.base_currency_name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_alternate_code_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_alternate_code_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_alternate_code_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_alternate_code_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_alternate_code_code_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_alternate_code_code_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_alternate_code_code_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_alternate_code_code_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_alternate_code_code_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_alternate_code_code_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_alternate_name_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_alternate_name_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_alternate_name_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_alternate_name_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_alternate_name_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_alternate_name_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_alternate_name_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_alternate_name_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_alternate_name_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_alternate_name_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_benchmark_id_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_benchmark_id_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_benchmark_id_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_benchmark_id_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_benchmark_id_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_benchmark_id_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_benchmark_id_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_benchmark_id_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_benchmark_id_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_benchmark_id_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_benchmark_name_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_benchmark_name_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_benchmark_name_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_benchmark_name_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_benchmark_name_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_benchmark_name_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_benchmark_name_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_benchmark_name_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_benchmark_name_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_benchmark_name_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_benchmark_is_primary_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_benchmark_is_primary_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_benchmark_is_primary_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_benchmark_is_primary_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_benchmark_is_primary_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_benchmark_is_primary_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_benchmark_is_primary_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_benchmark_is_primary_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_benchmark_is_primary_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_benchmark_is_primary_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_gips_composite_code_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_gips_composite_code_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_gips_composite_code_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_gips_composite_code_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_gips_composite_code_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_gips_composite_code_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_gips_composite_code_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_gips_composite_code_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_gips_composite_code_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_gips_composite_code_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_gips_composite_name_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_gips_composite_name_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_gips_composite_name_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_gips_composite_name_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_gips_composite_name_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_gips_composite_name_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_gips_composite_name_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_gips_composite_name_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_gips_composite_name_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_gips_composite_name_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_code_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_code_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_code_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_code_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_code_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_code_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_code_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_code_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_code_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_code_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_type_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_type_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_type_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_type_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_type_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_type_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_type_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_type_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_type_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_type_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_name_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_name_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_name_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_name_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_name_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_name_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_name_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_name_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_name_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_name_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.group_advisor_internal_external_indicator_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.group_advisor_internal_external_indicator_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.group_advisor_internal_external_indicator_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.group_advisor_internal_external_indicator_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.group_advisor_internal_external_indicator_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.group_advisor_internal_external_indicator_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.group_advisor_internal_external_indicator_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.group_advisor_internal_external_indicator_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.group_advisor_internal_external_indicator_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.group_advisor_internal_external_indicator_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_country_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_country_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_country_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_country_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_country_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_country_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_country_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_country_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_country_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_country_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_city_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_city_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_city_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_city_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_city_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_city_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_city_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_city_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_city_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_city_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_company_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_company_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_company_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_company_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_company_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_company_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_company_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_company_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_group_advisor_company_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_group_advisor_company_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_key",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_key",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portf_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portf_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portf_uid",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portf_uid",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.class_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.class_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.class_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.class_name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.class_asset_portf_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.class_asset_portf_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.nav_agent_class_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.nav_agent_class_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.nav_agent_class_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.nav_agent_class_name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portf_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portf_name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.primary_fund_class",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.primary_fund_class",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.scd_multi_class_series_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.scd_multi_class_series_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.nav_agent_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.nav_agent_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.nav_agent_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.nav_agent_name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_status_type_date",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_status_type_date",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.creation_date",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.creation_date",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_inception_date",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_inception_date",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_termination_date",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_termination_date",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_status",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_status",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.edl_created_ts",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.edl_created_ts",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_src",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_src",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.nav_agent_fund_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.nav_agent_fund_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_currency_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_currency_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_currency_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_currency_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_currency_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_currency_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_currency_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_currency_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_currency_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_currency_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_transfer_agent_id_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_transfer_agent_id_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_transfer_agent_id_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_transfer_agent_id_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_transfer_agent_id_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_transfer_agent_id_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_transfer_agent_id_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_transfer_agent_id_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_transfer_agent_id_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_transfer_agent_id_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_transfer_agent_name_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_transfer_agent_name_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_transfer_agent_name_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_transfer_agent_name_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_transfer_agent_name_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_transfer_agent_name_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_transfer_agent_name_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_transfer_agent_name_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_transfer_agent_name_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_transfer_agent_name_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.fund_class_code_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.fund_class_code_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.fund_class_code_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.fund_class_code_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.fund_class_code_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.fund_class_code_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.fund_class_code_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.fund_class_code_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.fund_class_code_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.fund_class_code_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_rating_agency_name_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_rating_agency_name_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_rating_agency_name_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_rating_agency_name_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_rating_agency_name_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_rating_agency_name_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_rating_agency_name_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_rating_agency_name_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_rating_agency_name_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_rating_agency_name_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_rating_agency_id_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_rating_agency_id_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_rating_agency_id_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_rating_agency_id_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_rating_agency_id_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_rating_agency_id_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_rating_agency_id_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_rating_agency_id_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_rating_agency_id_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_rating_agency_id_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_key",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_key",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.is_proxy_voting_required",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.is_proxy_voting_required",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_uid",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_uid",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.on_off_balance",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.on_off_balance",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.lot_closing_method",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.lot_closing_method",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.expected_funding_date",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.expected_funding_date",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.investment_mandate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.investment_mandate",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.work_area",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.work_area",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_surplus",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_surplus",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.separate_account_indicator",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.separate_account_indicator",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.par_nonpar",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.par_nonpar",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.passthrough",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.passthrough",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.accounting_block",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.accounting_block",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.is_transition_portfolio",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.is_transition_portfolio",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.is_house_holding_account",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.is_house_holding_account",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.immediate_liquidity_pool_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.immediate_liquidity_pool_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.territory_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.territory_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.deposit_type",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.deposit_type",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.seed_portf_indicator",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.seed_portf_indicator",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portf_region",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portf_region",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.private_portf_indicator",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.private_portf_indicator",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.nonparticipating_lpcd_reason",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.nonparticipating_lpcd_reason",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.forecasted_indicator",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.forecasted_indicator",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portf_sweep_indicator",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portf_sweep_indicator",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.target_cash_sweep_portf",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.target_cash_sweep_portf",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sweep_direction_indicator",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sweep_direction_indicator",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.lpcd_participate_indicator",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.lpcd_participate_indicator",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.required_calm_indicator",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.required_calm_indicator",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.business_reason",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.business_reason",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.inv_lp_port_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.inv_lp_port_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.cash_mgr_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.cash_mgr_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.relationship_manager",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.relationship_manager",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_status_type_date",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_status_type_date",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_creation_date",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_creation_date",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_funding_date",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_funding_date",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_termination_date",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_termination_date",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_status",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_status",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.delete_zero_positions",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.delete_zero_positions",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.retained_trade_pnl_history",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.retained_trade_pnl_history",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.allow_derivatives",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.allow_derivatives",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.allow_term_loans",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.allow_term_loans",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.allow_tba",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.allow_tba",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.allow_securities_lending",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.allow_securities_lending",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.allow_short_repo_cash",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.allow_short_repo_cash",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.allow_cross_trades",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.allow_cross_trades",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.allow_repo",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.allow_repo",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.allow_short_position",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.allow_short_position",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.strategy_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.strategy_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.strategy_shortname",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.strategy_shortname",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_strategy",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_strategy",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.is_model_portfolio",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.is_model_portfolio",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.default_asset_class",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.default_asset_class",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.accounting_cycle",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.accounting_cycle",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.meets_sri_esg",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.meets_sri_esg",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.performance_start_date",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.performance_start_date",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.performance_end_date",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.performance_end_date",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.is_fund_of_fund",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.is_fund_of_fund",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.operating_currency_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.operating_currency_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.operating_currency_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.operating_currency_name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.asset_portfolio_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.asset_portfolio_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.lawson_subfund_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.lawson_subfund_id",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.lawson_subfund_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.lawson_subfund_name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.subfund_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.subfund_id",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.subfund_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.subfund_name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.accounting_required",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.accounting_required",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_short_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_short_name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.derivatives_allowed_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.derivatives_allowed_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.derivatives_allowed_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.derivatives_allowed_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.derivatives_allowed_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.derivatives_allowed_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.derivatives_allowed_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.derivatives_allowed_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.derivatives_allowed_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.derivatives_allowed_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_transfer_agent_id_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_transfer_agent_id_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_transfer_agent_id_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_transfer_agent_id_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_transfer_agent_id_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_transfer_agent_id_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_transfer_agent_id_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_transfer_agent_id_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_transfer_agent_id_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_transfer_agent_id_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_transfer_agent_name_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_transfer_agent_name_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_transfer_agent_name_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_transfer_agent_name_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_transfer_agent_name_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_transfer_agent_name_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_transfer_agent_name_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_transfer_agent_name_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_transfer_agent_name_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_transfer_agent_name_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_gips_composite_code_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_gips_composite_code_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_gips_composite_code_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_gips_composite_code_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_gips_composite_code_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_gips_composite_code_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_gips_composite_code_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_gips_composite_code_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_gips_composite_code_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_gips_composite_code_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_gips_composite_name_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_gips_composite_name_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_gips_composite_name_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_gips_composite_name_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_gips_composite_name_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_gips_composite_name_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_gips_composite_name_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_gips_composite_name_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_gips_composite_name_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_gips_composite_name_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_id_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_id_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_id_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_id_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_id_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_id_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_id_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_id_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_id_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_id_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_name_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_name_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_name_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_name_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_name_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_name_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_name_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_name_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_name_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_name_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_is_primary_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_is_primary_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_is_primary_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_is_primary_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_is_primary_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_is_primary_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_is_primary_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_is_primary_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_is_primary_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_benchmark_is_primary_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_accounting_framework_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_accounting_framework_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_accounting_framework_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_accounting_framework_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_accounting_framework_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_accounting_framework_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_accounting_framework_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_accounting_framework_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_sleeve_accounting_framework_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_sleeve_accounting_framework_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.trading_philosophy_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.trading_philosophy_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.trading_philosophy_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.trading_philosophy_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.trading_philosophy_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.trading_philosophy_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.trading_philosophy_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.trading_philosophy_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.trading_philosophy_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.trading_philosophy_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_code_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_code_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_code_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_code_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_code_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_code_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_code_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_code_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_code_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_code_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.lead_portfolio_manager_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.lead_portfolio_manager_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.lead_portfolio_manager_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.lead_portfolio_manager_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.lead_portfolio_manager_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.lead_portfolio_manager_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.lead_portfolio_manager_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.lead_portfolio_manager_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.lead_portfolio_manager_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.lead_portfolio_manager_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_team_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_team_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_team_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_team_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_team_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_team_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_team_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_team_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_team_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_team_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_is_lead_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_is_lead_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_is_lead_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_is_lead_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_is_lead_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_is_lead_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_is_lead_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_is_lead_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_is_lead_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_is_lead_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_int_ext_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_int_ext_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_int_ext_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_int_ext_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_int_ext_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_int_ext_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_int_ext_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_int_ext_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_int_ext_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_int_ext_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_country_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_country_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_country_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_country_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_country_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_country_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_country_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_country_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_country_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_country_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_city_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_city_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_city_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_city_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_city_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_city_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_city_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_city_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_city_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_city_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_location_code_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_location_code_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_location_code_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_location_code_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_location_code_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_location_code_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_location_code_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_location_code_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_location_code_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_location_code_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_location_name_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_location_name_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_location_name_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_location_name_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_location_name_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_location_name_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_location_name_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_location_name_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_manager_location_name_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_manager_location_name_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.external_manager_company_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.external_manager_company_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.external_manager_company_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.external_manager_company_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.external_manager_company_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.external_manager_company_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.external_manager_company_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.external_manager_company_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.external_manager_company_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.external_manager_company_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.external_portfolio_code_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.external_portfolio_code_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.external_portfolio_code_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.external_portfolio_code_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.external_portfolio_code_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.external_portfolio_code_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.external_portfolio_code_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.external_portfolio_code_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.external_portfolio_code_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.external_portfolio_code_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.lead_sleeve_port_mgr_lgl_ent_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.lead_sleeve_port_mgr_lgl_ent_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.lead_sleeve_port_mgr_lgl_ent_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.lead_sleeve_port_mgr_lgl_ent_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.lead_sleeve_port_mgr_lgl_ent_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.lead_sleeve_port_mgr_lgl_ent_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.lead_sleeve_port_mgr_lgl_ent_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.lead_sleeve_port_mgr_lgl_ent_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.lead_sleeve_port_mgr_lgl_ent_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.lead_sleeve_port_mgr_lgl_ent_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bank_short_name_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.bank_short_name_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bank_short_name_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.bank_short_name_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bank_short_name_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.bank_short_name_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bank_short_name_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.bank_short_name_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bank_short_name_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.bank_short_name_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bank_account_number_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.bank_account_number_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bank_account_number_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.bank_account_number_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bank_account_number_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.bank_account_number_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bank_account_number_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.bank_account_number_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bank_account_number_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.bank_account_number_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bank_legal_name_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.bank_legal_name_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bank_legal_name_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.bank_legal_name_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bank_legal_name_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.bank_legal_name_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bank_legal_name_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.bank_legal_name_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bank_legal_name_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.bank_legal_name_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bank_currencies_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.bank_currencies_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bank_currencies_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.bank_currencies_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bank_currencies_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.bank_currencies_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bank_currencies_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.bank_currencies_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bank_currencies_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.bank_currencies_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_long_name_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_long_name_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_long_name_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_long_name_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_long_name_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_long_name_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_long_name_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_long_name_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_long_name_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_long_name_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_account_number_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_account_number_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_account_number_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_account_number_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_account_number_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_account_number_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_account_number_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_account_number_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_account_number_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_account_number_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_identifier_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_identifier_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_identifier_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_identifier_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_identifier_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_identifier_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_identifier_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_identifier_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_identifier_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_identifier_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_abbreviated_name_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_abbreviated_name_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_abbreviated_name_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_abbreviated_name_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_abbreviated_name_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_abbreviated_name_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_abbreviated_name_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_abbreviated_name_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_abbreviated_name_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_abbreviated_name_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_currencies_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_currencies_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_currencies_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_currencies_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_currencies_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_currencies_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_currencies_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_currencies_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.custodian_currencies_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.custodian_currencies_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_related_system_code_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_related_system_code_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_related_system_code_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_related_system_code_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_related_system_code_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_related_system_code_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_related_system_code_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_related_system_code_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_related_system_code_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_related_system_code_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_related_system_name_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_related_system_name_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_related_system_name_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_related_system_name_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_related_system_name_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_related_system_name_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_related_system_name_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_related_system_name_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_related_system_name_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_related_system_name_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.collateral_broker_name_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.collateral_broker_name_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.collateral_broker_name_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.collateral_broker_name_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.collateral_broker_name_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.collateral_broker_name_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.collateral_broker_name_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.collateral_broker_name_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.collateral_broker_name_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.collateral_broker_name_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.collateral_broker_id_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.collateral_broker_id_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.collateral_broker_id_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.collateral_broker_id_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.collateral_broker_id_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.collateral_broker_id_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.collateral_broker_id_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.collateral_broker_id_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.collateral_broker_id_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.collateral_broker_id_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.collateral_account_number_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.collateral_account_number_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.collateral_account_number_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.collateral_account_number_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.collateral_account_number_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.collateral_account_number_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.collateral_account_number_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.collateral_account_number_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.collateral_account_number_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.collateral_account_number_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.collateral_account_currency_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.collateral_account_currency_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.collateral_account_currency_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.collateral_account_currency_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.collateral_account_currency_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.collateral_account_currency_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.collateral_account_currency_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.collateral_account_currency_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.collateral_account_currency_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.collateral_account_currency_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.dal_created_ts",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.dal_created_ts",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.src_created_ts",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.src_created_ts",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.src_created_tz",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.src_created_tz",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.system_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.system_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.system_type",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.system_type",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.system_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.system_name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_related_system_code_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_related_system_code_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_related_system_code_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_related_system_code_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_related_system_code_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_related_system_code_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_related_system_code_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_related_system_code_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_related_system_code_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_related_system_code_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_related_system_name_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_related_system_name_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_related_system_name_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_related_system_name_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_related_system_name_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_related_system_name_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_related_system_name_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_related_system_name_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_related_system_name_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_related_system_name_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.src_jhi_fund_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.src_jhi_fund_id",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.fund_type_key",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.fund_type_key",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portf_grp_asset_mgr_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portf_grp_asset_mgr_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portf_grp_asset_mgr_desc",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portf_grp_asset_mgr_desc",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.country_key",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.country_key",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bank_fund_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.bank_fund_cd",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.fund_legal_nm",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.fund_legal_nm",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portf_grp_active_ind",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portf_grp_active_ind",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.fund_open_close_ind",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.fund_open_close_ind",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.multi_managed_ind",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.multi_managed_ind",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.current_period_close_dt",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.current_period_close_dt",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.prior_period_end_status",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.prior_period_end_status",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.distribution_frqncy",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.distribution_frqncy",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.fund_commencement_dt",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.fund_commencement_dt",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sec_inception_dt",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.sec_inception_dt",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sec_ccc",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sec_ccc",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.series_nm",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.series_nm",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.dda_nbr",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.dda_nbr",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.adviser_acct_nbr",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.adviser_acct_nbr",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.jhi_client_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.jhi_client_id",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.fund_auditor",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.fund_auditor",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.fund_counsel",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.fund_counsel",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.equity_price_source",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.equity_price_source",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bond_price_source",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.bond_price_source",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.amortization_policies",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.amortization_policies",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.fund_platform",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.fund_platform",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.investment_committee",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.investment_committee",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.commission_recapture_agnt",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.commission_recapture_agnt",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.credit_aggement_leverage_bank",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.credit_aggement_leverage_bank",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.line_of_credit_base",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.line_of_credit_base",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.tolerance_pc",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "cube_portfolios.tolerance_pc",
+									"type": "Decimal",
+									"physicalType": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sec_lending_ind",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sec_lending_ind",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.leverage_ind",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.leverage_ind",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.dual_pricing_ind",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.dual_pricing_ind",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.cstdn_conversion_dt",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.cstdn_conversion_dt",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.fund_merge_dt",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.fund_merge_dt",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.merge_surviving_fund",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.merge_surviving_fund",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.surviving_fund_client_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.surviving_fund_client_id",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.fund_liquadation_dt",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.fund_liquadation_dt",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.release_day",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.release_day",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.prior_period_close_dt",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.prior_period_close_dt",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liquidity_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liquidity_cd",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.annl_trnvr",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.annl_trnvr",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.lei_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.lei_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.futures_account_number",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.futures_account_number",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.futures_clearing_broker",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.futures_clearing_broker",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.tba_account_number",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.tba_account_number",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.tba_clearing_broker",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.tba_clearing_broker",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.rats",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "cube_portfolios.rats",
+									"type": "Decimal",
+									"physicalType": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.rats_stressed",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "cube_portfolios.rats_stressed",
+									"type": "Decimal",
+									"physicalType": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.hlim_ind",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.hlim_ind",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.grp_strategy_class",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.grp_strategy_class",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.distribution_status",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.distribution_status",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.edl_curated_ts",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.edl_curated_ts",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.country_name_short",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.country_name_short",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.cntry_cd_3digit",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.cntry_cd_3digit",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.iso2_country_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.iso2_country_cd",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.msci_rm_region",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.msci_rm_region",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.msci_rm_sub_region",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.msci_rm_sub_region",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.country_rating",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.country_rating",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.country_development",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.country_development",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.dev_zone",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.dev_zone",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bb_region",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.bb_region",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.fund_type_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.fund_type_cd",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.src_jhi_fund_sleeve_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.src_jhi_fund_sleeve_id",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_asset_mgr_code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_asset_mgr_code",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_asset_mgr_desc",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_asset_mgr_desc",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sub_adviser_acct_nbr",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sub_adviser_acct_nbr",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.jhi_ctgry",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.jhi_ctgry",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.morning_star_ctgry",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.morning_star_ctgry",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sub_committee",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sub_committee",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liquidation_dt",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.liquidation_dt",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liquidation_ind",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liquidation_ind",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.merger_dt",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.merger_dt",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.merger_ind",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.merger_ind",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.access_class_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.access_class_cd",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.strategy_grp",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.strategy_grp",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.strategy_class",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.strategy_class",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.sleeve_active_ind",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.sleeve_active_ind",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.slv_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.slv_cd",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.feeder_fund_ind",
+									"type": "Boolean"
+								},
+								"sink": {
+									"name": "cube_portfolios.feeder_fund_ind",
+									"type": "Boolean",
+									"physicalType": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.closed_distribution",
+									"type": "Boolean"
+								},
+								"sink": {
+									"name": "cube_portfolios.closed_distribution",
+									"type": "Boolean",
+									"physicalType": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.mutual_fund_structure",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.mutual_fund_structure",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.investment_vehicle_type",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.investment_vehicle_type",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.investment_style",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.investment_style",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.discretionary_ind",
+									"type": "Boolean"
+								},
+								"sink": {
+									"name": "cube_portfolios.discretionary_ind",
+									"type": "Boolean",
+									"physicalType": "Boolean"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_rating_category_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_rating_category_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_rating_category_count",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_rating_category_count",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_rating_category_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_rating_category_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_rating_category_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_rating_category_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.liability_portfolio_rating_category_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.liability_portfolio_rating_category_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.portfolio_key",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.portfolio_key",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.segment_nm",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.segment_nm",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.segment_currency_key",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.segment_currency_key",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.segment_currency_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.segment_currency_cd",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.tax_ref_country_key",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.tax_ref_country_key",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.tax_ref_country_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.tax_ref_country_cd",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.investment_portfolio_ind",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.investment_portfolio_ind",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.regulated_account_ind",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.regulated_account_ind",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.subfund_effective_dt",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.subfund_effective_dt",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.subfund_income_start_dt",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "cube_portfolios.subfund_income_start_dt",
+									"type": "DateTime",
+									"physicalType": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.reserve_nonreserve_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.reserve_nonreserve_cd",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.trust_ind",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.trust_ind",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.hedge_participation_ind",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.hedge_participation_ind",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.nafi_group_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.nafi_group_cd",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.asia_lgaap_trading_philosophy_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.asia_lgaap_trading_philosophy_cd",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.other_invested_asset_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.other_invested_asset_cd",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.payment_recon_principle_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.payment_recon_principle_cd",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.bank_identifier",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.bank_identifier",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.mim_public_market_entity_list",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.mim_public_market_entity_list",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.mim_public_market_entity_count",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "cube_portfolios.mim_public_market_entity_count",
+									"type": "Int64",
+									"physicalType": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.mim_public_market_entity_ind_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.mim_public_market_entity_ind_1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.mim_public_market_entity_ind_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.mim_public_market_entity_ind_2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.mim_public_market_entity_ind_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.mim_public_market_entity_ind_3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.mim_portfolio_group_ind",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.mim_portfolio_group_ind",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.ifrs9_business_model_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.ifrs9_business_model_cd",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.ifrs9_ind",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.ifrs9_ind",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.tax_legal_entity_type",
+									"type": "String"
+								},
+								"sink": {
+									"name": "cube_portfolios.tax_legal_entity_type",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.year",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.year",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "cube_portfolios.month",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "cube_portfolios.month",
+									"type": "Int32",
+									"physicalType": "Int32"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_dynamic_DAL_dev",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_Source": "inv_dal.cube_portfolios"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_blob_dynamic",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_ds_filename": "test_portfolio_dev.txt"
+						}
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Test"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-05-05T17:26:59Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

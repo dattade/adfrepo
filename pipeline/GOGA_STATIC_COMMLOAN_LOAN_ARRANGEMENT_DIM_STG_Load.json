@@ -1,0 +1,1316 @@
+{
+	"name": "GOGA_STATIC_COMMLOAN_LOAN_ARRANGEMENT_DIM_STG_Load",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy Data - IDDL to SQL",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Lookup Metadata Master",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OdbcSource",
+						"additionalColumns": [
+							{
+								"name": "IsLoaded",
+								"value": "N"
+							},
+							{
+								"name": "CreatedDate",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							}
+						],
+						"query": {
+							"value": "@{activity('Lookup Metadata Master').output.firstRow.source_query}",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "SqlMISink",
+						"preCopyScript": {
+							"value": "TRUNCATE TABLE @{activity('Lookup Metadata Master').output.firstRow.target_schema}.@{activity('Lookup Metadata Master').output.firstRow.target_tab}",
+							"type": "Expression"
+						},
+						"maxConcurrentConnections": 16
+					},
+					"enableStaging": false,
+					"parallelCopies": 16,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "loan_arrangement_dim_sk",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "LOAN_ARRANGEMENT_DIM_SK",
+									"type": "Int64",
+									"physicalType": "bigint"
+								}
+							},
+							{
+								"source": {
+									"name": "loan_arr_key",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LOAN_ARR_KEY",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "control_id",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "CONTROL_ID",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "loan_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LOAN_ID",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "loan_subordinate_id",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "LOAN_SUBORDINATE_ID",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "loan_number",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LOAN_NUMBER",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "loan_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LOAN_NAME",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "borrower_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BORROWER_NAME",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "loan_category_desc",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LOAN_CATEGORY_DESC",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "loan_class_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LOAN_CLASS_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "loan_class_desc",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LOAN_CLASS_DESC",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "loan_class",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LOAN_CLASS",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "loan_type_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LOAN_TYPE_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "loan_type_desc",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LOAN_TYPE_DESC",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "loan_type",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LOAN_TYPE",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "loan_status",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LOAN_STATUS",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "primary_borrower_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PRIMARY_BORROWER_NAME",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "corp_borrower_iso3_country_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CORP_BORROWER_ISO3_COUNTRY_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "corp_borrower_iso2_country_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CORP_BORROWER_ISO2_COUNTRY_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "corp_borrower_country_name_short",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CORP_BORROWER_COUNTRY_NAME_SHORT",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "corp_borrower_country_name_long",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CORP_BORROWER_COUNTRY_NAME_LONG",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "corp_borrower_address_line_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CORP_BORROWER_ADDRESS_LINE_1",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "corp_borrower_address_line_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CORP_BORROWER_ADDRESS_LINE_2",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "corp_borrower_city",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CORP_BORROWER_CITY",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "corp_borrower_cntry_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CORP_BORROWER_CNTRY_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "corp_borrower_first_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CORP_BORROWER_FIRST_NAME",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "collateral_id",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "COLLATERAL_ID",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "lien_pos_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LIEN_POS_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "acli_clhia_property_type_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ACLI_CLHIA_PROPERTY_TYPE_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "acli_clhia_region_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ACLI_CLHIA_REGION_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "collateral_type_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "COLLATERAL_TYPE_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "property_address_line_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PROPERTY_ADDRESS_LINE_1",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "property_address_line_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PROPERTY_ADDRESS_LINE_2",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "property_cntry_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PROPERTY_CNTRY_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "property_county_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PROPERTY_COUNTY_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "property_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PROPERTY_NAME",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "property_postal_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PROPERTY_POSTAL_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "property_state_province_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PROPERTY_STATE_PROVINCE_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "property_subtype_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PROPERTY_SUBTYPE_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "loan_term_months",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "LOAN_TERM_MONTHS",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "approved_amt",
+									"type": "String"
+								},
+								"sink": {
+									"name": "APPROVED_AMT",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "property_city",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PROPERTY_CITY",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "corp_borrower_state_province_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CORP_BORROWER_STATE_PROVINCE_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "asset_status_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ASSET_STATUS_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "asset_status_desc",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ASSET_STATUS_DESC",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "alt_asset_type_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ALT_ASSET_TYPE_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ccy_type_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CCY_TYPE_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "coupon_interest_rate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "COUPON_INTEREST_RATE",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "first_pmt_dt",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "FIRST_PMT_DT",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "funding_dt",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "FUNDING_DT",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "interest_adjustment_frequency_number",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "INTEREST_ADJUSTMENT_FREQUENCY_NUMBER",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "interest_adjustment_frequency_type_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "INTEREST_ADJUSTMENT_FREQUENCY_TYPE_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "interest_paid_to_dt",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "INTEREST_PAID_TO_DT",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "interest_type_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "INTEREST_TYPE_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "margin",
+									"type": "String"
+								},
+								"sink": {
+									"name": "MARGIN",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "maturity_dt",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "MATURITY_DT",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "original_bal_amt",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ORIGINAL_BAL_AMT",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "pmt_amt",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PMT_AMT",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "pmt_frequency_number",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "PMT_FREQUENCY_NUMBER",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "pmt_frequency_type_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PMT_FREQUENCY_TYPE_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "rate_compound_frequency_type_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "RATE_COMPOUND_FREQUENCY_TYPE_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "rtg_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "RTG_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "rtg_dt",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "RTG_DT",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "origination_rtg_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ORIGINATION_RTG_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "origination_rtg_dt",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "ORIGINATION_RTG_DT",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "rtg_method_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "RTG_METHOD_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "rtg_numeric_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "RTG_NUMERIC_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "rtg_type_cd",
+									"type": "String"
+								},
+								"sink": {
+									"name": "RTG_TYPE_CD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "composite_rating",
+									"type": "String"
+								},
+								"sink": {
+									"name": "COMPOSITE_RATING",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "risk_scorecard_rating",
+									"type": "String"
+								},
+								"sink": {
+									"name": "RISK_SCORECARD_RATING",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "amortized_term",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "AMORTIZED_TERM",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "as_of_dt_loan_delinquency",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "AS_OF_DT_LOAN_DELINQUENCY",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "client_branch",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CLIENT_BRANCH",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "dscr_net_cash_flow_stabiilized",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DSCR_NET_CASH_FLOW_STABIILIZED",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "loan_to_value_stabilized",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LOAN_TO_VALUE_STABILIZED",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "margin_spread",
+									"type": "String"
+								},
+								"sink": {
+									"name": "MARGIN_SPREAD",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "most_recent_dscr_noi",
+									"type": "String"
+								},
+								"sink": {
+									"name": "MOST_RECENT_DSCR_NOI",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "net_cash_flow",
+									"type": "String"
+								},
+								"sink": {
+									"name": "NET_CASH_FLOW",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "net_operating_income",
+									"type": "String"
+								},
+								"sink": {
+									"name": "NET_OPERATING_INCOME",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "original_amt",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ORIGINAL_AMT",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "site_inspection_dt",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SITE_INSPECTION_DT",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "stabilized_adjusted_property_val",
+									"type": "String"
+								},
+								"sink": {
+									"name": "STABILIZED_ADJUSTED_PROPERTY_VAL",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "rbc_cm_class",
+									"type": "String"
+								},
+								"sink": {
+									"name": "RBC_CM_CLASS",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "src",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SRC",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "bus_eff_date_from",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "BUS_EFF_DATE_FROM",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "bus_eff_date_to",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "BUS_EFF_DATE_TO",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							},
+							{
+								"source": {
+									"name": "IsLoaded",
+									"type": "String"
+								},
+								"sink": {
+									"name": "IsLoaded",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CreatedDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CreatedDate",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_dynamic_DAL",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_Source": {
+								"value": "@{activity('Lookup Metadata Master').output.firstrow.source_schema}.@{activity('Lookup Metadata Master').output.firstRow.source_tab}",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_dynamic_SQL",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_TargetSchema": {
+								"value": "@{activity('Lookup Metadata Master').output.firstRow.target_schema}",
+								"type": "Expression"
+							},
+							"p_TargetTab": {
+								"value": "@{activity('Lookup Metadata Master').output.firstRow.target_tab}",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "SP - PipelineLog update on success",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Copy Data - IDDL to SQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": {
+						"value": "@{activity('Lookup Metadata Master').output.firstRow.target_schema}.usp_pipelinelog",
+						"type": "Expression"
+					},
+					"storedProcedureParameters": {
+						"adfName": {
+							"value": {
+								"value": "@pipeline().DataFactory",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"pipelinename": {
+							"value": {
+								"value": "@pipeline().Pipeline",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"runid": {
+							"value": {
+								"value": "@pipeline().RunId",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"Status": {
+							"value": "Completed",
+							"type": "String"
+						},
+						"triggername": {
+							"value": {
+								"value": "@pipeline().TriggerName",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"triggerTime": {
+							"value": {
+								"value": "@pipeline().TriggerTime",
+								"type": "Expression"
+							},
+							"type": "DateTime"
+						},
+						"master_pipelinename": {
+							"value": {
+								"value": "@pipeline().parameters.pp_MasterPipelineName",
+								"type": "Expression"
+							},
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_SQLMI_GOGA",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "SP - Pipelinelog update on failure",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Copy Data - IDDL to SQL",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": {
+						"value": "@{activity('Lookup Metadata Master').output.firstRow.target_schema}.usp_pipelinelog",
+						"type": "Expression"
+					},
+					"storedProcedureParameters": {
+						"adfName": {
+							"value": {
+								"value": "@pipeline().DataFactory",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"pipelinename": {
+							"value": {
+								"value": "@pipeline().Pipeline",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"runid": {
+							"value": {
+								"value": "@pipeline().RunId",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"Status": {
+							"value": "Failed",
+							"type": "String"
+						},
+						"triggername": {
+							"value": {
+								"value": "@pipeline().TriggerName",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"triggerTime": {
+							"value": {
+								"value": "@pipeline().TriggerTime",
+								"type": "Expression"
+							},
+							"type": "DateTime"
+						},
+						"master_pipelinename": {
+							"value": {
+								"value": "@pipeline().parameters.pp_MasterPipelineName",
+								"type": "Expression"
+							},
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_SQLMI_GOGA",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "ActivityLog update on completion",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Copy Data - IDDL to SQL",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlMISource",
+						"sqlReaderQuery": {
+							"value": "INSERT INTO @{activity('Lookup Metadata Master').output.firstRow.target_schema}.log_activity SELECT '@{pipeline().DataFactory}' as DataFactory_Name,'@{pipeline().Pipeline}' as Pipeline_Name,'@{pipeline().parameters.pp_MasterPipelineName}' AS Master_Pipeline_Name,'@{pipeline().RunId}' as RunId,'@{activity('Lookup Metadata Master').output.firstRow.source_schema}.@{activity('Lookup Metadata Master').output.firstRow.source_tab}' as source,'@{activity('Lookup Metadata Master').output.firstRow.target_schema}.@{activity('Lookup Metadata Master').output.firstRow.target_tab}' as destination,'@{pipeline().TriggerType}' as TriggerType,'@{pipeline().TriggerId}' as TriggerId,'@{pipeline().TriggerName}' as TriggerName,'@{pipeline().TriggerTime}' as TriggerTime,'@{activity('Copy Data - IDDL to SQL').output.rowsCopied}' as rowsCopied,'@{activity('Copy Data - IDDL to SQL').output.rowsRead}' as RowsRead,'@{activity('Copy Data - IDDL to SQL').output.usedParallelCopies}' as No_ParallelCopies,'@{activity('Copy Data - IDDL to SQL').output.copyDuration}' as copyDuration_in_secs,'@{activity('Copy Data - IDDL to SQL').output.effectiveIntegrationRuntime}' as effectiveIntegrationRuntime,'@{activity('Copy Data - IDDL to SQL').output.executionDetails[0].source.type}' as Source_Type,'@{activity('Copy Data - IDDL to SQL').output.executionDetails[0].sink.type}' as Sink_Type,'@{activity('Copy Data - IDDL to SQL').output.executionDetails[0].status}' as Execution_Status,'@{activity('Copy Data - IDDL to SQL').output.executionDetails[0].start}' as CopyActivity_Start_Time,'@{utcnow()}' as CopyActivity_End_Time,'@{activity('Copy Data - IDDL to SQL').output.executionDetails[0].detailedDurations.queuingDuration}' as CopyActivity_queuingDuration_in_secs,'@{activity('Copy Data - IDDL to SQL').output.executionDetails[0].detailedDurations.timeToFirstByte}' as CopyActivity_timeToFirstByte_in_secs,'@{activity('Copy Data - IDDL to SQL').output.executionDetails[0].detailedDurations.transferDuration}' as CopyActivity_transferDuration_in_secs; SELECT 1;",
+							"type": "Expression"
+						},
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_dynamic_SQL",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_TargetSchema": {
+								"value": "@{activity('Lookup Metadata Master').output.firstRow.target_schema}",
+								"type": "Expression"
+							},
+							"p_TargetTab": "log_activity"
+						}
+					}
+				}
+			},
+			{
+				"name": "Lookup Metadata Master",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlMISource",
+						"sqlReaderQuery": {
+							"value": "SELECT metadata_master_sk,source_schema,source_tab,target_schema,target_tab,delta_identifier,source_query FROM @{pipeline().globalParameters.P_Global_TgtSchema}.tbl_metadata_master WHERE pipeline_exec_code = @{pipeline().parameters.pp_pipeline_exec_code}",
+							"type": "Expression"
+						},
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_dynamic_SQL",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_TargetSchema": {
+								"value": "@pipeline().globalParameters.P_Global_TgtSchema",
+								"type": "Expression"
+							},
+							"p_TargetTab": {
+								"value": "tbl_metadata_master",
+								"type": "Expression"
+							}
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"pp_pipeline_exec_code": {
+				"type": "int",
+				"defaultValue": 275
+			},
+			"pp_MasterPipelineName": {
+				"type": "string",
+				"defaultValue": "NA"
+			}
+		},
+		"folder": {
+			"name": "GO-GA/COMMERCIAL LOAN"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-05-09T16:35:04Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

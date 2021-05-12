@@ -1,0 +1,24 @@
+{
+	"name": "tg_bkp_config_tab",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "GOGA_backup_config_tabs",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2021-03-25T00:00:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}

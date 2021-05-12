@@ -1,0 +1,24 @@
+{
+	"name": "ds_dynamic_DAL_dev",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ODBC_IDDL_DEV",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_Source": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "OdbcTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": {
+				"value": "@dataset().p_Source",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

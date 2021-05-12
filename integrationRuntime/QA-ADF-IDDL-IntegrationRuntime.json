@@ -1,0 +1,7 @@
+{
+	"name": "QA-ADF-IDDL-IntegrationRuntime",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "ADF QA Integration Runtime Service"
+	}
+}

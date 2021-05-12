@@ -1,0 +1,227 @@
+{
+	"name": "GOGA_backup_config_tabs",
+	"properties": {
+		"activities": [
+			{
+				"name": "Backup metadata tabs",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlMISource",
+						"sqlReaderQuery": {
+							"value": "IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[STG].[BKP_tbl_metadata_master]') AND type in (N'U'))\nDROP TABLE [STG].BKP_tbl_metadata_master;\nIF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[STG].[BKP_ctrl_watermark]') AND type in (N'U'))\nDROP TABLE [STG].BKP_ctrl_watermark;\nIF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[STG].[BKP_tbl_usp_execution_order]') AND type in (N'U'))\nDROP TABLE [STG].BKP_tbl_usp_execution_order;\nselect * INTO STG.BKP_TBL_METADATA_MASTER FROM STG.TBL_METADATA_MASTER;\nselect * INTO STG.BKP_CTRL_WATERMARK FROM STG.CTRL_WATERMARK ;\nselect * INTO STG.BKP_TBL_USP_EXECUTION_ORDER FROM STG.TBL_USP_EXECUTION_ORDER;\nSELECT 1;",
+							"type": "Expression"
+						},
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_dynamic_SQL",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_TargetSchema": "STG",
+							"p_TargetTab": "NA"
+						}
+					}
+				}
+			},
+			{
+				"name": "cube_metadata_master",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlMISource",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_dynamic_SQL",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_TargetSchema": "STG",
+							"p_TargetTab": "tbl_metadata_master"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_blob_dynamic",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_ds_filename": {
+								"value": "@concat('tbl_metadata_master_', formatDateTime(utcnow(),'yyyy-MM-dd'), '.txt')",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "tbl_usp_execution_order",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlMISource",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_dynamic_SQL",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_TargetSchema": "STG",
+							"p_TargetTab": "tbl_usp_execution_order"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_blob_dynamic",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_ds_filename": {
+								"value": "@concat('tbl_usp_execution_order_', formatDateTime(utcnow(),'yyyy-MM-dd'), '.txt')",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "ctrl_watermark",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlMISource",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_dynamic_SQL",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_TargetSchema": "STG",
+							"p_TargetTab": "tbl_usp_execution_order"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_blob_dynamic",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_ds_filename": {
+								"value": "@concat('ctrl_watermark_', formatDateTime(utcnow(),'yyyy-MM-dd'), '.txt')",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Template"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-04-28T05:09:35Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

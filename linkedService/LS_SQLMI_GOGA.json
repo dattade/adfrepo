@@ -1,0 +1,16 @@
+{
+	"name": "LS_SQLMI_GOGA",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlMI",
+		"typeProperties": {
+			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=azmicacgwamsqlq1.0aaea009f791.database.windows.net;initial catalog=sqldb-gwam-go_ga-r2d2-qa;user id=\"sqlgogaqasvc \"",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIxOTM2ZDQ0MS0wZjE4LTRmYzQtOGYwMS1jNDY1YzgxZDE4NzIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "QA-ADF-IDDL-IntegrationRuntime-2",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

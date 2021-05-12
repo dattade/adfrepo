@@ -1,0 +1,209 @@
+{
+	"name": "GOGA_MSTR_INFORGL_SMT",
+	"properties": {
+		"activities": [
+			{
+				"name": "SMT Load",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": {
+						"value": "@{pipeline().globalParameters.P_Global_TgtSchema}.[usp__WrapperMaster__load]",
+						"type": "Expression"
+					},
+					"storedProcedureParameters": {
+						"pJobGroup": {
+							"value": {
+								"value": "@{pipeline().parameters.p_m_JobGroup}",
+								"type": "Expression"
+							},
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_SQLMI_GOGA",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "PipelineLogSuccess - SMT",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "SMT Load",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": {
+						"value": "@{pipeline().globalParameters.P_Global_TgtSchema}.usp_pipelinelog",
+						"type": "Expression"
+					},
+					"storedProcedureParameters": {
+						"adfName": {
+							"value": {
+								"value": "@pipeline().DataFactory",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"pipelinename": {
+							"value": {
+								"value": "@pipeline().Pipeline",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"runid": {
+							"value": {
+								"value": "@pipeline().RunId",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"Status": {
+							"value": "Completed",
+							"type": "String"
+						},
+						"triggername": {
+							"value": {
+								"value": "@pipeline().TriggerName",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"triggerTime": {
+							"value": {
+								"value": "@pipeline().TriggerTime",
+								"type": "Expression"
+							},
+							"type": "DateTime"
+						},
+						"master_pipelinename": {
+							"value": {
+								"value": "@pipeline().parameters.pp_MasterPipelineName",
+								"type": "Expression"
+							},
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_SQLMI_GOGA",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "PipelinelogFailure - SMT",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "SMT Load",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": {
+						"value": "@{pipeline().globalParameters.P_Global_TgtSchema}.usp_pipelinelog",
+						"type": "Expression"
+					},
+					"storedProcedureParameters": {
+						"adfName": {
+							"value": {
+								"value": "@pipeline().DataFactory",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"pipelinename": {
+							"value": {
+								"value": "@pipeline().Pipeline",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"runid": {
+							"value": {
+								"value": "@pipeline().RunId",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"Status": {
+							"value": "Failed",
+							"type": "String"
+						},
+						"triggername": {
+							"value": {
+								"value": "@pipeline().TriggerName",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"triggerTime": {
+							"value": {
+								"value": "@pipeline().TriggerTime",
+								"type": "Expression"
+							},
+							"type": "DateTime"
+						},
+						"master_pipelinename": {
+							"value": {
+								"value": "@pipeline().parameters.pp_MasterPipelineName",
+								"type": "Expression"
+							},
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_SQLMI_GOGA",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"parameters": {
+			"p_m_JobGroup": {
+				"type": "string"
+			},
+			"pp_MasterPipelineName": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "GO-GA/INFORGL"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-05-10T05:08:47Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
